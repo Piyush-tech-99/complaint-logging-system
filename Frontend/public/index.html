@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sanitation Complaint Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <!-- Leaflet for map preview -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>City Sanitation — Report an Issue</h1>
+    <a class="cta" href="/manager" target="_blank">Manager Dashboard</a>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Submit a Complaint</h2>
+      <form id="complaintForm" class="form-grid">
+        <label>Title
+          <input id="title" required placeholder="e.g. Broken public bin at Market St."/>
+        </label>
+        <label>Description
+          <textarea id="description" rows="4" placeholder="Describe the issue..."></textarea>
+        </label>
+        <label>Priority
+          <select id="priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <label>Your name
+          <input id="reporter" placeholder="Optional"/>
+        </label>
+        <label>Location (lat, lng)
+          <div style="display:flex;gap:8px;">
+            <input id="lat" placeholder="lat" />
+            <input id="lng" placeholder="lng" />
+            <button type="button" id="locFromBrowser">Use my location</button>
+          </div>
+        </label>
+
+        <div class="form-actions">
+          <button id="submitBtn" type="submit" class="primary">Submit Complaint</button>
+          <!-- ✅ changed id from reset → resetBtn -->
+          <button id="resetBtn" type="reset" class="muted">Reset</button>
+        </div>
+      </form>
+
+      <div id="map" style="height:220px;margin-top:12px;border-radius:8px;"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Chatbot — Quick report</h2>
+      <div id="chatbox" class="chatbox">
+        <div id="messages" class="messages"></div>
+      </div>
+      <div class="chat-input">
+        <input id="chatInput" placeholder="Describe your problem or type 'report' to file a complaint" />
+        <button id="sendChat">Send</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Demo sanitation complaint system • Real-time updates & manager tools</small>
+  </footer>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
+
